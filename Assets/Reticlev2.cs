@@ -22,11 +22,11 @@ public class Reticlev2 : MonoBehaviour {
 
 	}
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
  
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
         screenPosition.y = Screen.height - screenPosition.y;
         GUI.DrawTexture(new Rect(screenPosition.x, screenPosition.y-lookHeight, size, size), image);
-    }
+    }*/
 }

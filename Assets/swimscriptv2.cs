@@ -6,23 +6,21 @@ using UnityEngine;
     public class swimscriptv2 : MonoBehaviour
     {
 
-        public float movementSpeed = 3.0f;
+        public float walkSpeed = 5.0f;
+        public float runSpeed = 30.0f;
         public float mouseSensitivity = 5.0f;
-        public float clampAngle = 35.0f;
+        public float clampXAngle = 35.0f;
+        public bool lockCursor = true;
 
         private float rotY = 0.0f; // rotation around the up/y axis
         private float rotX = 0.0f; // rotation around the right/x axis
-    
-        Quaternion swimrot = Quaternion.Euler(90, 0, 0);
+        private float movementSpeed;
+        private bool m_cursorIsLocked;
 
 
     // Use this for initialization
     void Start()
         {
-
-        // starts player in swimming position
-        //transform.localRotation = swimrot;
-
         Vector3 rot = transform.localRotation.eulerAngles;
         rotY = rot.y;
         rotX = rot.x;
@@ -35,11 +33,20 @@ using UnityEngine;
             float horizontal = Input.GetAxis("Strafe"); // slide on x axis
             float forwardback = Input.GetAxis("ForwardBack"); // slide on z axis
             float updown = Input.GetAxis("UpDown"); // slide on y axis
-         
-            
-            //this is movement
-            Vector3 direction = new Vector3(horizontal, updown, forwardback);
-            transform.Translate(horizontal * movementSpeed * Time.deltaTime, 0, forwardback * movementSpeed * Time.deltaTime);
+            float movementSpeed = 3.0f;
+
+        
+        UpdateCursorLock();
+
+        movementSpeed = walkSpeed;
+
+        if (Input.GetButton("Sprint"))
+        {
+            movementSpeed = runSpeed;
+        }
+
+        //this is movement
+        transform.Translate(horizontal * movementSpeed * Time.deltaTime, updown * movementSpeed * Time.deltaTime, forwardback * movementSpeed * Time.deltaTime);
 
             //transform.position += direction * movementSpeed * Time.deltaTime;
 
@@ -50,19 +57,53 @@ using UnityEngine;
             rotY += mouseX * mouseSensitivity * Time.deltaTime; // left and right
             rotX += mouseY * mouseSensitivity * Time.deltaTime; // up and down
 
-            rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle); // up and down clamp
+            rotX = Mathf.Clamp(rotX, -clampXAngle, clampXAngle); // up and down clamp
 
             Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
             transform.rotation = localRotation;
+        
+    }
 
-        if(Input.GetMouseButtonDown(0))
+    public void UpdateCursorLock()
+    {
+        //if the user set "lockCursor" we check & properly lock the cursos
+        if (lockCursor)
+            InternalLockUpdate();
+    }
+
+    public void SetCursorLock(bool value)
+    {
+        lockCursor = value;
+        if (!lockCursor)
+        {//we force unlock the cursor if the user disable the cursor locking helper
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
+    private void InternalLockUpdate()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            Debug.Log("Pressed left click.");
-            
+            m_cursorIsLocked = false;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            m_cursorIsLocked = true;
         }
 
+        if (m_cursorIsLocked)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else if (!m_cursorIsLocked)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
-       
-    }
+
+}
 
