@@ -10,8 +10,10 @@ using UnityEngine;
         public float runSpeed = 30.0f;
         public float mouseSensitivity = 5.0f;
         public float clampXAngle = 35.0f;
+        public float playerMaxHealth = 100f;
+        public float playerCurrentHealth = 100f;
         public bool lockCursor = true;
-       
+        
 
 
         private float rotY = 0.0f; // rotation around the up/y axis
@@ -107,6 +109,27 @@ using UnityEngine;
         }
     }
 
+    public void Damage(int damageAmount)
+
+    {
+
+        //subtract damage amount when Damage function is called
+
+        playerCurrentHealth -= damageAmount;
+
+        //Check if health has fallen below zero
+
+        if (playerCurrentHealth <= 0)
+
+        {
+
+            //if health has fallen below zero, deactivate it 
+
+            //gameObject.SetActive(false);
+
+        }
+
+    }
 
 }
 

@@ -9,8 +9,8 @@ public class shooting : MonoBehaviour {
     public float weaponRange = 30f;
     public float hitForce = 100f;
     public GameObject crosshairPrefab;
-    public Vector3 gunPos;
     public Ray shootRay;
+    public bool crosshair = true;
 
     private WaitForSeconds shotDuration = new WaitForSeconds(.07f);
     //private AudioSource gunAudio;
@@ -25,7 +25,7 @@ public class shooting : MonoBehaviour {
     laserLine = GetComponent<LineRenderer>();
     //gunAudio = GetComponent<AudioSource>();
 
-    if (crosshairPrefab != null)
+    if (crosshairPrefab != null && crosshair == true)
         {
          crosshairPrefab = Instantiate(crosshairPrefab);
         }
@@ -34,9 +34,9 @@ public class shooting : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
         PositionCrosshair(shootRay);
-        gunPos = transform.position + new Vector3(0, 2, 0);
+
+        Vector3 gunPos = transform.position + new Vector3(0, 2, 0);
 
         if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
 
@@ -81,7 +81,6 @@ public class shooting : MonoBehaviour {
         //gunAudio.Play();
         shotFired = true;
         //Debug.Log("Shot fired");
-        Debug.Log("shotFired : " + shotFired);
         laserLine.enabled = true;
         yield return shotDuration;
         laserLine.enabled = false;
@@ -91,15 +90,14 @@ public class shooting : MonoBehaviour {
 
     void PositionCrosshair(Ray ray)
     {
-        Vector3 gunPos = transform.position + new Vector3(0, 2, 0);
+        Vector3 raySpawn = transform.position + new Vector3(0, 2, 0);
 
         RaycastHit hit;
-        if (Physics.Raycast(gunPos, transform.forward, out hit, weaponRange))
-            if (crosshairPrefab != null)
-                {
+        
+                if (Physics.Raycast(raySpawn, transform.forward, out hit))
+            Debug.DrawLine(raySpawn, hit.point, Color.green);
             crosshairPrefab.transform.position = hit.point;
             crosshairPrefab.transform.LookAt(Camera.main.transform);
-
-                }
+       
     }
 }

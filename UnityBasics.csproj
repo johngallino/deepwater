@@ -337,7 +337,6 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\Scripts\JGSmoothFollow.cs" />
-    <Compile Include="Assets\Scripts\Reticlev2.cs" />
     <Compile Include="Assets\Scripts\shootableEvilCube.cs" />
     <Compile Include="Assets\Scripts\shooting.cs" />
     <Compile Include="Assets\Scripts\swimscriptv2.cs" />
