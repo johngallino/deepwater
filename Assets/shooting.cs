@@ -28,7 +28,7 @@ public class shooting : MonoBehaviour {
         Vector3 gunPos = transform.position + new Vector3(0, 2, 0);
 
         Debug.DrawLine(transform.position, transform.forward * 30, Color.green);
-
+        Debug.DrawLine(gunPos, transform.forward * 30, Color.magenta);
 
         laserLine.SetPosition(0, gunPos);
 
