@@ -6,17 +6,18 @@ public class shooting : MonoBehaviour {
 
     public int gunDamage = 1;
     public float fireRate = .25f;
-    public float weaponRange = 50f;
+    public float weaponRange = 30f;
     public float hitForce = 100f;
 
     private WaitForSeconds shotDuration = new WaitForSeconds(.07f);
     //private AudioSource gunAudio;
     private LineRenderer laserLine;
     private float nextFire;
+    private bool shotFired;
 
     // Use this for initialization
     void Start () {
-    
+    shotFired = false;
     laserLine = GetComponent<LineRenderer>();
     //gunAudio = GetComponent<AudioSource>();
 
@@ -25,7 +26,9 @@ public class shooting : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        
         Vector3 gunPos = transform.position + new Vector3(0, 2, 0);
+        
 
         Debug.DrawLine(transform.position, transform.forward * 30, Color.green);
         Debug.DrawLine(gunPos, transform.forward * 30, Color.magenta);
@@ -45,23 +48,33 @@ public class shooting : MonoBehaviour {
         if (Physics.Raycast(gunPos, transform.forward, out hit, weaponRange))
         {
             laserLine.SetPosition(1, hit.point);
-            if (hit.rigidbody != null)
-                Debug.Log("Ray hit a rigidbody"); // this doesn't work for some reason
+            
+            if (shotFired == true && hit.rigidbody != null)
+                Debug.Log("Ray hit a rigidbody");
+            else if (shotFired == true && hit.collider != null)
+                Debug.Log("Ray hit a collider");
+            else if (shotFired == true && hit.collider == null && hit.rigidbody == null)
+                Debug.Log("Ray hit nothing");
         }
         else
         {
-            laserLine.SetPosition(1, transform.forward * weaponRange);
-        }
+            laserLine.SetPosition(1, gunPos + (transform.forward * weaponRange));
+                    }
+
+        
     }
 
     private IEnumerator ShotEffect()
 
     {
         //gunAudio.Play();
+        shotFired = true;
+        Debug.Log("Shot fired");
         laserLine.enabled = true;
         yield return shotDuration;
         laserLine.enabled = false;
-        Debug.Log("Shot fired");
+        shotFired = false;
+
 
     }
 
