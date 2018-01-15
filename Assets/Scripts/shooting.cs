@@ -93,11 +93,12 @@ public class shooting : MonoBehaviour {
         Vector3 raySpawn = transform.position + new Vector3(0, 2, 0);
 
         RaycastHit hit;
-        
-                if (Physics.Raycast(raySpawn, transform.forward, out hit))
-            Debug.DrawLine(raySpawn, hit.point, Color.green);
-            crosshairPrefab.transform.position = hit.point;
-            crosshairPrefab.transform.LookAt(Camera.main.transform);
-       
+
+        if (Physics.Raycast(raySpawn, transform.forward, out hit))
+        { 
+        Debug.DrawLine(raySpawn, hit.point, Color.green);
+        crosshairPrefab.transform.position = hit.point;
+        crosshairPrefab.transform.LookAt(Camera.main.transform);
+        }
     }
 }

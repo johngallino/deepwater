@@ -6,25 +6,26 @@ using UnityEngine;
     public class swimscriptv2 : MonoBehaviour
     {
 
-        public float walkSpeed = 5.0f;
+        public float walkSpeed = 15.0f;
         public float runSpeed = 30.0f;
         public float mouseSensitivity = 5.0f;
         public float clampXAngle = 35.0f;
         public float playerMaxHealth = 100f;
         public float playerCurrentHealth = 100f;
         public bool lockCursor = true;
-        
-
-
+             
+    
         private float rotY = 0.0f; // rotation around the up/y axis
         private float rotX = 0.0f; // rotation around the right/x axis
         private float movementSpeed;
         private bool m_cursorIsLocked;
+        private Animator anim;
 
 
     // Use this for initialization
     void Start()
         {
+        anim = gameObject.GetComponentInChildren<Animator>();
         Vector3 rot = transform.localRotation.eulerAngles;
         rotY = rot.y;
         rotX = rot.x;
@@ -49,6 +50,13 @@ using UnityEngine;
         {
             movementSpeed = runSpeed;
         }
+
+        if (Input.GetAxis("ForwardBack") != 0)
+           {
+            anim.SetBool("isSwimming", true);
+            
+            } else
+            anim.SetBool("isSwimming", false);
 
         //this is movement
         transform.Translate(horizontal * movementSpeed * Time.deltaTime, updown * movementSpeed * Time.deltaTime, forwardback * movementSpeed * Time.deltaTime);

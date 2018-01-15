@@ -12,6 +12,7 @@ public class shootableEvilCube : MonoBehaviour {
     public float weaponRange = 10f;
     public Ray shootRay;
     public Transform target;
+    public Rigidbody ammo;
 
     private WaitForSeconds shotDuration = new WaitForSeconds(2f);
     //private AudioSource gunAudio;
@@ -27,30 +28,33 @@ public class shootableEvilCube : MonoBehaviour {
 
     public void Update()
     {
-        transform.LookAt(target);
-        Vector3 gunPos = transform.position;
-        nextFire = Time.time + fireRate;
-        StartCoroutine(ShotEffect());
-        RaycastHit hit;
-        laserLine.SetPosition(0, gunPos);
+        float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
-        Debug.DrawLine(gunPos, gunPos + transform.forward * 30, Color.cyan);
+        if (distanceToPlayer < 50f)
+        {
+            transform.LookAt(target);
+            
+            StartCoroutine(ShotEffect());
+            
+        }
+        /*
+        nextFire = Time.time + fireRate;
+        //StartCoroutine(ShotEffect());
+        RaycastHit hit;
+        laserLine.SetPosition(0, transform.position);
+
+        
         if (Time.time > nextFire)
         {
-            if (Physics.Raycast(gunPos, transform.forward, out hit, weaponRange))
-            {
-                laserLine.SetPosition(1, hit.point);
-                swimscriptv2 playerCurrentHealth = hit.collider.GetComponent<swimscriptv2>();
+            Physics.Raycast(transform.position, transform.forward, out hit, weaponRange);
 
-                if (playerCurrentHealth != null)
-                    playerCurrentHealth.Damage(gunDamage);
+            laserLine.SetPosition(1, hit.point);
+            swimscriptv2 playerCurrentHealth = hit.collider.GetComponent<swimscriptv2>();
 
-            }
-            else
-            {
-                laserLine.SetPosition(1, gunPos + (transform.forward * weaponRange));
-            }
-        }
+            if (playerCurrentHealth != null && hit.collider == playerCurrentHealth)
+                playerCurrentHealth.Damage(gunDamage);
+
+        }*/
     }
 
 
@@ -58,11 +62,13 @@ private IEnumerator ShotEffect()
 
 {
     //gunAudio.Play();
-    laserLine.enabled = true;
+    Rigidbody ammoInstance;
     yield return shotDuration;
-    laserLine.enabled = false;
+    ammoInstance = Instantiate(ammo, transform.position, transform.rotation) as Rigidbody;
+    ammoInstance.AddForce(transform.forward * 5000);
+    Destroy(ammoInstance, 2.0f);
 
-}
+    }
 
 public void Damage(int damageAmount)
 
