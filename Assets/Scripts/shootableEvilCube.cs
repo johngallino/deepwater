@@ -8,42 +8,40 @@ public class shootableEvilCube : MonoBehaviour {
 
     public int currentHealth = 3;
     public int gunDamage = 5;
-    public float fireRate = .25f;
+    public float fireRate = 1f;
     public float weaponRange = 10f;
     public Ray shootRay;
     public Transform target;
-	[SerializeField] private Rigidbody ammo;
+    [SerializeField] private Rigidbody ammo;
 
     private WaitForSeconds shotDuration = new WaitForSeconds(3f);
-    //private AudioSource gunAudio;
-    private LineRenderer laserLine;
     private float nextFire;
-	private Rigidbody ammoInstance;
-    
+    private Rigidbody ammoInstance;
 
     public void Start()
     {
-        laserLine = GetComponent<LineRenderer>();
-        //gunAudio = GetComponent<AudioSource>();
+       
     }
 
     public void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
-		if (distanceToPlayer < 50f && ammoInstance == null)
+        if (distanceToPlayer < 50f)
         {
-            transform.LookAt(target);
+            Vector3 relativePos = target.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            transform.rotation = rotation;
+
+            if (Time.time >= nextFire)
             
-			ammoInstance = Instantiate(ammo) as Rigidbody;
-			ammo.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
-			ammo.transform.rotation = transform.rotation;
+            shoot();
 
 
-		} else if (distanceToPlayer > 50f)
-		{	float _angle = Random.Range(-110, 110);
-			transform.Rotate(0, _angle, 0);
-		}
+
+        } else if (distanceToPlayer > 50f)
+            transform.Rotate(0, 0, 0);
+        
 
         /*
         nextFire = Time.time + fireRate;
@@ -65,19 +63,13 @@ public class shootableEvilCube : MonoBehaviour {
         }*/
     }
 
-
-private IEnumerator ShotEffect()
-
-{
-    //gunAudio.Play();
-	yield return shotDuration;
-    Rigidbody ammoInstance;
-	ammoInstance = Instantiate(ammo, transform.position, transform.rotation) as Rigidbody;
-	ammoInstance.transform.position = transform.TransformPoint (Vector3.forward * 1.5f);
-	ammoInstance.transform.rotation = transform.rotation;
-    Destroy(ammoInstance, 2.0f);
-
-    }
+    void shoot()
+    {
+        nextFire = Time.time + fireRate;
+        ammoInstance = Instantiate(ammo) as Rigidbody;
+	    ammoInstance.transform.position = transform.TransformPoint(Vector3.forward* 1.5f);
+		ammoInstance.transform.rotation = transform.rotation;
+        }
 
 public void Damage(int damageAmount)
 

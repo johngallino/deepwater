@@ -336,11 +336,12 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\Scripts\healthbar.cs" />
     <Compile Include="Assets\Scripts\JGSmoothFollow.cs" />
+    <Compile Include="Assets\Scripts\projectile.cs" />
     <Compile Include="Assets\Scripts\SelfDestruct.cs" />
     <Compile Include="Assets\Scripts\shootableEvilCube.cs" />
     <Compile Include="Assets\Scripts\shooting.cs" />
-    <Compile Include="Assets\Scripts\shootingv2.cs" />
     <Compile Include="Assets\Scripts\swimscriptv2.cs" />
     <Compile Include="Assets\Scripts\UICamScript.cs" />
   </ItemGroup>
