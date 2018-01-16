@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23970351221900092}
   - component: {fileID: 95367787718023466}
   - component: {fileID: 54593593460631132}
-  - component: {fileID: 114487488806951522}
+  - component: {fileID: 114296473361378720}
   m_Layer: 0
   m_Name: spear
   m_TagString: Untagged
@@ -37,8 +37,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1423205670707642}
-  m_LocalRotation: {x: 0.21098353, y: 0, z: 0, w: 0.9774897}
-  m_LocalPosition: {x: -7.1896772, y: 0.5, z: 25.996216}
+  m_LocalRotation: {x: -0.19687174, y: -0.36439875, z: -0.07911754, w: 0.90674996}
+  m_LocalPosition: {x: 10.966417, y: 9.5481205, z: 30.956097}
   m_LocalScale: {x: 400, y: 400, z: 400}
   m_Children: []
   m_Father: {fileID: 0}
@@ -117,7 +117,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114487488806951522
+--- !u!114 &114296473361378720
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -125,7 +125,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423205670707642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b34d48efd879624799117ba82f4aa06, type: 3}
+  m_Script: {fileID: 11500000, guid: d0e82e2c40df941218f428365b9bc7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 5
+  speed: 85
+  damage: 5
+  lifetime: 4

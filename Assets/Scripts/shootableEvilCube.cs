@@ -12,12 +12,13 @@ public class shootableEvilCube : MonoBehaviour {
     public float weaponRange = 10f;
     public Ray shootRay;
     public Transform target;
-    public Rigidbody ammo;
+	[SerializeField] private Rigidbody ammo;
 
-    private WaitForSeconds shotDuration = new WaitForSeconds(2f);
+    private WaitForSeconds shotDuration = new WaitForSeconds(3f);
     //private AudioSource gunAudio;
     private LineRenderer laserLine;
     private float nextFire;
+	private Rigidbody ammoInstance;
     
 
     public void Start()
@@ -30,13 +31,20 @@ public class shootableEvilCube : MonoBehaviour {
     {
         float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
-        if (distanceToPlayer < 50f)
+		if (distanceToPlayer < 50f && ammoInstance == null)
         {
             transform.LookAt(target);
             
-            StartCoroutine(ShotEffect());
-            
-        }
+			ammoInstance = Instantiate(ammo) as Rigidbody;
+			ammo.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
+			ammo.transform.rotation = transform.rotation;
+
+
+		} else if (distanceToPlayer > 50f)
+		{	float _angle = Random.Range(-110, 110);
+			transform.Rotate(0, _angle, 0);
+		}
+
         /*
         nextFire = Time.time + fireRate;
         //StartCoroutine(ShotEffect());
@@ -62,10 +70,11 @@ private IEnumerator ShotEffect()
 
 {
     //gunAudio.Play();
+	yield return shotDuration;
     Rigidbody ammoInstance;
-    yield return shotDuration;
-    ammoInstance = Instantiate(ammo, transform.position, transform.rotation) as Rigidbody;
-    ammoInstance.AddForce(transform.forward * 5000);
+	ammoInstance = Instantiate(ammo, transform.position, transform.rotation) as Rigidbody;
+	ammoInstance.transform.position = transform.TransformPoint (Vector3.forward * 1.5f);
+	ammoInstance.transform.rotation = transform.rotation;
     Destroy(ammoInstance, 2.0f);
 
     }

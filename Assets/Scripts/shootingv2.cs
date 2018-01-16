@@ -13,11 +13,8 @@ public class shootingv2 : MonoBehaviour {
     public bool crosshairOn = true;
     public Transform gunBarrel;
 
-    private WaitForSeconds shotDuration = new WaitForSeconds(.07f);
-    //private AudioSource gunAudio;
 
     private float nextFire;
-    private Ray ray;
        
     // Use this for initialization
     void Start () {
@@ -25,16 +22,37 @@ public class shootingv2 : MonoBehaviour {
 
     if (crosshairPrefab != null && crosshairOn == true)
         {
-         crosshairPrefab = Instantiate(crosshairPrefab);
+			
+
+			Instantiate (crosshairPrefab, gunBarrel);
+			Debug.Log ("Crosshair instnatiated");
         }
     }
-	
+
 	// Update is called once per frame
 	void Update () {
 
-        crosshairPrefab.transform.position = Input.mousePosition;
+		Vector3 raySpawn = gunBarrel.transform.position;
 
 
+		Ray ray = new Ray(gunBarrel.position, gunBarrel.transform.forward);
+		Debug.DrawLine(gunBarrel.position, gunBarrel.transform.forward * 1000, Color.green);
+
+		RaycastHit hit;
+
+		if (Physics.Raycast(ray, out hit))
+		{ 
+			Debug.Log ("Hitting something");
+			crosshairPrefab.transform.position = hit.point;
+			crosshairPrefab.transform.LookAt(Camera.main.transform);
+		}
+
+		if (hit.rigidbody != null)
+		Debug.Log("Ray hit a rigidbody");
+		else if (hit.collider != null)
+			Debug.Log("Ray hit a collider");
+		
+	
 
         if (Input.GetButtonDown("Fire1"))
             //if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
@@ -45,29 +63,15 @@ public class shootingv2 : MonoBehaviour {
             ammoInstance = Instantiate(ammo, gunBarrel.position, gunBarrel.rotation) as Rigidbody;
             ammoInstance.AddForce(gunBarrel.forward * 5000);
             
-        }
+        	}
         
-        
-    }
+		if (Input.GetButtonDown ("Fire2")) 
+		{
+			GameObject clone = GameObject.CreatePrimitive (PrimitiveType.Sphere);
+			clone.transform.position = gunBarrel.position;
 
-    
+    	}
 
-    void PositionCrosshair(Ray ray)
-    {
-        Vector3 raySpawn = gunBarrel.forward;
-        
-
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawLine(raySpawn, transform.forward, Color.green);
-
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        { 
-        
-        crosshairPrefab.transform.position = hit.point;
-        crosshairPrefab.transform.LookAt(Camera.main.transform);
-        }
-    }
+	}
 }
+
