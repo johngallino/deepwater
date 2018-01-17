@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class projectile : MonoBehaviour {
 
 	public float speed  = 5f;
-	public int damage = 5;
 	public float lifetime = 4.0f;
     public bool hasHit;
     private Rigidbody rb;
@@ -13,27 +10,20 @@ public class projectile : MonoBehaviour {
 	void Start () {
 
         hasHit = false;
-		Destroy(gameObject, lifetime);
+        Destroy(gameObject, lifetime);
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.TransformDirection(Vector3.forward * speed);
     }
 
-
-    // Update is called once per frame
     void Update () {
-        
-
-        //transform.Translate (0, 0, speed * Time.deltaTime);
-
+        Debug.Log("hasHit is " + hasHit);
     }
 
     public void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Projectile collided");
         hasHit = true;
-        Destroy(this.gameObject);
-        if (hasHit == true)
-            Debug.Log("hasHit is true");
+        Destroy(this.gameObject); 
     }
 
 

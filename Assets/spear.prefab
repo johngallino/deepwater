@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 95367787718023466}
   - component: {fileID: 54593593460631132}
   - component: {fileID: 114296473361378720}
+  - component: {fileID: 65325537746638828}
   m_Layer: 0
   m_Name: spear
   m_TagString: Untagged
@@ -37,8 +38,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1423205670707642}
-  m_LocalRotation: {x: -0.009830399, y: 0.97333, z: -0.04248253, w: -0.22522722}
-  m_LocalPosition: {x: 11.830775, y: 7.2899537, z: 23.97279}
+  m_LocalRotation: {x: -0.009860529, y: 0.98597467, z: -0.0630433, w: -0.15421514}
+  m_LocalPosition: {x: 12.850747, y: 6.9789205, z: 24.839003}
   m_LocalScale: {x: 400, y: 400, z: 400}
   m_Children: []
   m_Father: {fileID: 0}
@@ -93,13 +94,25 @@ Rigidbody:
   m_GameObject: {fileID: 1423205670707642}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 2
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_Drag: 5
+  m_AngularDrag: 1
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
+--- !u!65 &65325537746638828
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1423205670707642}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0010373804, y: 0.0010373795, z: 0.01348258}
+  m_Center: {x: -0.000010188481, y: -0.000010016461, z: 0.00024128985}
 --- !u!95 &95367787718023466
 Animator:
   serializedVersion: 3
@@ -128,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e82e2c40df941218f428365b9bc7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 85
+  speed: 400
   damage: 5
   lifetime: 4
+  hasHit: 0

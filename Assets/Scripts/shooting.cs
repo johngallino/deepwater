@@ -6,14 +6,12 @@ public class shooting : MonoBehaviour {
     public Rigidbody ammo;
     private float nextFire;
     private projectile projectile;
-    private bool hasHit2;
+    [SerializeField] private bool hasHit2;
 
     
     void Update ()
     {
         projectile = ammo.GetComponent<projectile>();
-        
-;
         
         if (Input.GetButtonDown("Fire1"))
             {
