@@ -4,14 +4,14 @@ public class shooting : MonoBehaviour {
 
     public float fireRate = 15f;
     public Rigidbody ammo;
+    public int damage = 5;
     private float nextFire;
     private projectile projectile;
-    [SerializeField] private bool hasHit2;
-
+       
     
     void Update ()
     {
-        projectile = ammo.GetComponent<projectile>();
+        
         
         if (Input.GetButtonDown("Fire1"))
             {
@@ -23,11 +23,10 @@ public class shooting : MonoBehaviour {
 
    void Shoot()
     {
-        hasHit2 = projectile.hasHit;
         Rigidbody ammoInstance = Instantiate(ammo, transform.position, transform.rotation) as Rigidbody;
-        if (hasHit2 == true)
-            Debug.Log("hasHit2 is true");
-        
+        ammo.tag = "MyProjectile";
+        ammo.GetComponent<projectile>().enemyDamage = damage;
+                
     }
 }
 

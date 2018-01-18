@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 65325537746638828}
   m_Layer: 0
   m_Name: spear
-  m_TagString: Untagged
+  m_TagString: MyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,6 +142,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 400
-  damage: 5
-  lifetime: 4
-  hasHit: 0
+  lifetime: 1
+  enemyDamage: 8
