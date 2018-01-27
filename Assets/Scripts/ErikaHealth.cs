@@ -12,6 +12,7 @@ public class ErikaHealth : MonoBehaviour {
     public Slider airbar;
     public float AirDepletionRate = 5f;
     public bool isDead = false;
+
     private Animator anim;
     private int damageFromEnemy;
     private projectile projectilescript;
@@ -24,8 +25,8 @@ public class ErikaHealth : MonoBehaviour {
         // Resets health and air to full on game load
         CurrentHealth = MaxHealth;
         CurrentAir = MaxAir;
-        healthbar.value = CalculateHealth();
-        airbar.value = CalculateAir();
+        
+        
         anim.SetBool("isDead", false);
         StartCoroutine(AirDepletion(AirDepletionRate));
     }
@@ -33,6 +34,8 @@ public class ErikaHealth : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+        healthbar.value = CalculateHealth();
+        airbar.value = CalculateAir();
         // Press X to self-inflict damage for testing
         if (Input.GetKeyDown(KeyCode.X))
             DealDamage(6f);
@@ -44,10 +47,8 @@ public class ErikaHealth : MonoBehaviour {
         if (_collision.gameObject.tag == "Projectile")
         {
             // Take damage value from projectile object and subtract it from player health
-            Debug.Log("Erika shot with projectile");
             GameObject projectile = _collision.gameObject;
             projectilescript = projectile.GetComponent<projectile>();
-            Debug.Log("projectile is " + projectile);
             damageFromEnemy = projectilescript.enemyDamage;
             DealDamage(damageFromEnemy);
         }
@@ -58,12 +59,11 @@ public class ErikaHealth : MonoBehaviour {
         // Deduct the damage dealt from the character's health
         CurrentHealth -= damageValue;
         healthbar.value = CalculateHealth();
-        Debug.Log("Current Health is " + CurrentHealth);
         // If the character is out of health, die!
 
         if (CurrentHealth <= 0)
         {
-            Debug.Log("Current Health is " + CurrentHealth);
+            
             isDead = true;
             Die();
         }
@@ -71,7 +71,6 @@ public class ErikaHealth : MonoBehaviour {
 
    private IEnumerator AirDepletion(float airrate)
     {
-        Debug.Log("AirDepletion Coroutine started");
         while (CurrentAir > 0)
         {
             CurrentAir -= airrate;

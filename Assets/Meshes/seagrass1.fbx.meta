@@ -1,19 +1,26 @@
 fileFormatVersion: 2
-guid: b7cf4044012c22d4a91b611e89d5826e
-timeCreated: 1514604201
+guid: 65c362f518ddd3d49b6c602f65bf8de9
+timeCreated: 1516410637
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: No Name
+    2100000: seagrassMAT
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cylinder.004
-  externalObjects: {}
+    4300000: seagrass1
+    9500000: //RootNode
+    13700000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: seagrassMAT
+    second: {fileID: 2100000, guid: c53b5164cdcf7bc4caafb48d0091d928, type: 2}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -63,10 +70,10 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

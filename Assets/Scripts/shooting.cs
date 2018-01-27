@@ -26,7 +26,7 @@ public class shooting : MonoBehaviour {
         Rigidbody ammoInstance = Instantiate(ammo, transform.position, transform.rotation) as Rigidbody;
         ammo.tag = "MyProjectile";
         ammo.GetComponent<projectile>().enemyDamage = damage;
-                
+                        
     }
 }
 

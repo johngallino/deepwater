@@ -338,7 +338,12 @@
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\ErikaHealth.cs" />
+    <Compile Include="Assets\Scripts\Floater.cs" />
+    <Compile Include="Assets\Scripts\Flock.cs" />
+    <Compile Include="Assets\Scripts\GlobalFlock.cs" />
     <Compile Include="Assets\Scripts\JGSmoothFollow.cs" />
+    <Compile Include="Assets\Scripts\pickupAir.cs" />
+    <Compile Include="Assets\Scripts\pickupHealth.cs" />
     <Compile Include="Assets\Scripts\projectile.cs" />
     <Compile Include="Assets\Scripts\SelfDestruct.cs" />
     <Compile Include="Assets\Scripts\shooting.cs" />

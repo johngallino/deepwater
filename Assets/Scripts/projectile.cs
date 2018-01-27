@@ -21,8 +21,12 @@ public class projectile : MonoBehaviour {
 
     public void OnCollisionEnter(Collision collision)
     {
-        Destroy(this.gameObject, .25f);
-        Debug.Log("Dealt " + enemyDamage + " damage");
+        if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Projectile hit " + collision.gameObject.name + " doing " + enemyDamage + " damage");
+            Destroy(this.gameObject, .25f);
+        }
+        
     }
 
 

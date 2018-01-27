@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 114469830694332724}
   - component: {fileID: 114878661103568528}
   m_Layer: 0
-  m_Name: erika_UNITY_copy
+  m_Name: erika_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1106,15 +1106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a7975533309b484da0e69f5168dcd70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunDamage: 1
   fireRate: 0.25
-  weaponRange: 30
-  hitForce: 100
   ammo: {fileID: 54593593460631132, guid: ceb5f5c4aa65d2746bfd2f0ad73903da, type: 2}
-  crosshairPrefab: {fileID: 1671310444571114, guid: 047ad74c40210bf46a22ec877c304e6e,
-    type: 2}
-  crosshairOn: 1
-  gunBarrel: {fileID: 4057553116814746}
+  damage: 5
 --- !u!114 &114878661103568528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1130,8 +1124,6 @@ MonoBehaviour:
   runSpeed: 30
   mouseSensitivity: 5
   clampXAngle: 35
-  playerMaxHealth: 100
-  playerCurrentHealth: 100
   lockCursor: 1
 --- !u!120 &120530212238176530
 LineRenderer:
