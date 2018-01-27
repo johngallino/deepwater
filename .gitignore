@@ -13,8 +13,7 @@ ExportedObj/
 .consulo/
 *.suo
 *.tmp
-*.user
-*.userprefs
+
 *.pidb
 *.booproj
 *.svd
