@@ -128,22 +128,25 @@ public class EnemyScript : MonoBehaviour
 
     }
 
+
     public void DropLoot()
     {
+
         if (DropPrefab1 != null && DropPrefab2 != null)
         {
             Debug.Log("Dropping loot");
-            if(Random.Range(0, 100) < DropProbability)
-            { 
-            
-            Debug.Log("Loot1 dropped");
-            Instantiate(DropPrefab1);
-            DropPrefab1.transform.position = dropSpawn;
-                if(Random.Range(0,100) < DropProbability/1.5)
+            if (Random.Range(0, 100) < DropProbability)
+            {
+
+                Debug.Log("Loot1 dropped");
+                GameObject go = (GameObject)Instantiate(DropPrefab1);
+
+                go.transform.position = this.transform.position;
+                if (Random.Range(0, 100) < DropProbability / 1.5)
                 {
                     Debug.Log("Loot2 dropped");
-                    Instantiate(DropPrefab2);
-                    DropPrefab2.transform.position = dropSpawn + new Vector3(0,5,0);
+                    GameObject go2 = (GameObject)Instantiate(DropPrefab2);
+                    go2.transform.position = this.transform.position + new Vector3(0, 5, 0);
                 }
             }
         }
