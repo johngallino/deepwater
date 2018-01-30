@@ -10,21 +10,21 @@ public class Flock : MonoBehaviour {
     Vector3 averageHeading;
     Vector3 averagePosition;
     float neighborDistance = 4.0f;
-    GameObject fishmanager;
+    private Vector3 spawnPoint;
 
     bool turning = false;
 
     // Use this for initialization
     void Start ()
     {
-        fishmanager = GameObject.Find("FishManager");
+        spawnPoint = transform.position;
         speed = Random.Range(3.0f, 4.0f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (Vector3.Distance(transform.position, fishmanager.transform.position)  >= GlobalFlock.tankSize)
+        if (Vector3.Distance(transform.position, spawnPoint)  >= GlobalFlock.tankSize)
         {
             turning = true;
         }
@@ -33,7 +33,7 @@ public class Flock : MonoBehaviour {
 
         if (turning)
         {
-            Vector3 direction = fishmanager.transform.position - transform.position;
+            Vector3 direction = spawnPoint - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation,
                                                     Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
             speed = Random.Range(3.0f, 4.0f);
@@ -107,7 +107,7 @@ public class Flock : MonoBehaviour {
             speed = gSpeed / groupSize;
 
             Vector3 direction = (vcenter + vavoid) - transform.position;
-            if (direction != fishmanager.transform.position)
+            if (direction != spawnPoint)
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction),
                                                         rotationSpeed * Time.deltaTime);
         }

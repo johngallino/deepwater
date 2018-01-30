@@ -1054,7 +1054,7 @@ MonoBehaviour:
   obstacleRange: 8
   fireRate: 3
   gunSpawn: {fileID: 4895492266446154}
-  DropProbability: 100
+  DropProbability: 60
   DropPrefab1: {fileID: 1192684381014436, guid: 5f0dcc245b72a13448263b5487c67349,
     type: 2}
   DropPrefab2: {fileID: 1204500676904272, guid: e436b05eaec7b674cb0d9d07fc9891e8,
