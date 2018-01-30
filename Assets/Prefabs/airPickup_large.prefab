@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4056193978196364}
   - component: {fileID: 33243379780009884}
   - component: {fileID: 23914851851717630}
-  - component: {fileID: 95711457145941760}
   - component: {fileID: 65163399196803338}
   - component: {fileID: 114196403896452574}
   - component: {fileID: 114132785770272362}
@@ -100,23 +99,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.037619617, y: 0.07547129, z: 0.033620108}
   m_Center: {x: -0.0021537738, y: 0.0028802657, z: 0.000022335053}
---- !u!95 &95711457145941760
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1705047338739768}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: cf9e0e026d7e76e4f993bac11a18d97a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114132785770272362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,4 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   airAmount: 500
-  Erika: {fileID: 0}
+  pickUpText: Picked up a Large Air Tank
+  secondsOnScreen: 2

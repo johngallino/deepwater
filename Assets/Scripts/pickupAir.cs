@@ -5,13 +5,13 @@ public class pickupAir : MonoBehaviour
 {
 
     public int airAmount = 20;
-    public GameObject Erika;
-    public GameObject pickupTextGO;
-    public Text myText;
-    public string newString;
-    public float secondsOnScreen = 3;
+    public string pickUpText = "Picked up an Air Tank";
+    public float secondsOnScreen = 2f;
+
     private ErikaHealth healthscript;
-    private bool isTaken = false;
+    public Text pickupTextCanvas;
+    private GameObject Erika;
+
 
     // Use this for initialization
 
@@ -20,40 +20,42 @@ public class pickupAir : MonoBehaviour
     {
         Erika = GameObject.FindGameObjectWithTag("Player");
         healthscript = Erika.GetComponent<ErikaHealth>();
-        
-        
+     
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (secondsOnScreen > 0 && isTaken == true)
-        {
-            secondsOnScreen -= Time.deltaTime;
-            myText.gameObject.SetActive(true);
-            myText.text = "Picked up small air tank";
-
-        }
-        else if (isTaken == false|| secondsOnScreen == 0)
-        {
-            myText.gameObject.SetActive(false);
-        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        pickupTextCanvas.gameObject.SetActive(true);
         if (other.gameObject == Erika && healthscript.CurrentAir < healthscript.MaxAir)
         {
             Debug.Log("Erika's air level was " + healthscript.CurrentAir);
+            //makes pickup disappear but doesnt destroy it for a few seconds to allow coroutine to run
             gameObject.transform.localScale = new Vector3(0, 0, 0);
-            Destroy(this.gameObject, secondsOnScreen);
+            Destroy(this.gameObject, secondsOnScreen+1);
+
             healthscript.CurrentAir += airAmount;
             if (healthscript.CurrentAir > healthscript.MaxAir)
                 healthscript.CurrentAir = healthscript.MaxAir;
             Debug.Log("Erika's air level is now " + healthscript.CurrentAir);
-            isTaken = true;
+            
+            StartCoroutine(pickupText(pickUpText));
+            
         }
     }
 
-    
+    private IEnumerator pickupText(string words)
+    {
+        Debug.Log("Coroutine started");
+        pickupTextCanvas.text = words;
+        yield return new WaitForSeconds(secondsOnScreen);
+        Debug.Log("pickupText should be killed by now");
+        pickupTextCanvas.gameObject.SetActive(false);
+    }
+
 }

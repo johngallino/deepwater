@@ -110,7 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmount: 20
-  Erika: {fileID: 0}
+  pickUpText: Picked up a Large Medkit
+  secondsOnScreen: 2
 --- !u!114 &114445824453803428
 MonoBehaviour:
   m_ObjectHideFlags: 1

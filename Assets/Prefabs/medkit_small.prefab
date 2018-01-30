@@ -125,4 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmount: 5
-  Erika: {fileID: 0}
+  pickUpText: Picked up a Small Medkit
+  secondsOnScreen: 2
