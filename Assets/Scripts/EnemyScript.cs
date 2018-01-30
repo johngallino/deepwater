@@ -6,47 +6,70 @@ public class EnemyScript : MonoBehaviour
     public int currentHealth = 3;
     public int damage = 20;
     public int sightRange = 50;
+    public float patrolRadius = 45f;
     public float speed = 2.0f;
-    public float obstacleRange = 6.0f;
     public float fireRate = 1f;
     public Transform gunSpawn;
     [Range(0, 100)] public int DropProbability;
     public GameObject DropPrefab1;
     public GameObject DropPrefab2;
+
     private GameObject targetGameObject;
     private Transform targetTransform;
     private Animator anim;
-    
-
+    private bool isHit = false;
+    private bool turning = false;
+    private float obstacleRange = 6.0f;
     private float nextFire;
     private Rigidbody ammoInstance;
     private projectile projectilescript;
     private int damageFromEnemy;
     private Vector3 dropSpawn;
+    private float distanceToPlayer;
+    private Vector3 spawnPoint;
 
     public void Start()
     {
         anim = gameObject.GetComponentInChildren<Animator>();
         targetGameObject = GameObject.Find("ERIKA/hitTarget");
         targetTransform = targetGameObject.transform;
+        spawnPoint = transform.position;
 
     }
 
     public void Update()
     {
         // Check if player is within range
-        float distanceToPlayer = Vector3.Distance(transform.position, targetTransform.position);
+        distanceToPlayer = Vector3.Distance(transform.position, targetTransform.position);
 
         if (distanceToPlayer > 45) // if more than 45 units away from player, swim around
         {
-            anim.SetBool("isSwimming", true);
-            transform.Translate(0, 0, Time.deltaTime * speed);
-            /* if(Random.Range (0, 50) < 1)
-             {
-                 Quaternion rotationTarget = Quaternion.Euler(Random.Range(-110.0f, 110.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f));
-                 transform.rotation = Quaternion.Slerp(transform.rotation, rotationTarget, 8.0f * Time.deltaTime);
-             } */
+            if (isHit != true)
+            { // Enemy will be in this state most of the time - patrolling with no player to shoot
+                anim.SetBool("isSwimming", true);
+                transform.Translate(0, 0, Time.deltaTime * speed);
 
+                if (Vector3.Distance(transform.position, spawnPoint) >= patrolRadius)
+                {
+                    turning = true;
+                }
+                else
+                    turning = false;
+
+                if (turning)
+                {
+                    Vector3 direction = spawnPoint - transform.position;
+                    transform.rotation = Quaternion.Slerp(transform.rotation,
+                    Quaternion.LookRotation(direction), 5.0f * Time.deltaTime);
+                    
+                }
+
+            }
+            else
+            {
+                transform.LookAt(targetTransform);
+                transform.Translate(0, 0, Time.deltaTime * speed * 1.5f);
+            }
         }
         else if (distanceToPlayer < 15) // if less than 15 units from player, swim away
         {
@@ -54,7 +77,7 @@ public class EnemyScript : MonoBehaviour
             //Vector3 away = targetTransform.position - transform.position;
             transform.Translate(Vector3.back * (speed * 2) * Time.deltaTime);
         }
-        else // if less than 45 units, but more than 15 units, turn towards player and shoot
+        else // if less than 45 units, but more than 15 units, STOP swimming, turn towards player and shoot
         {
             anim.SetBool("isSwimming", false);
             Vector3 relativePos = targetTransform.position - transform.position;
@@ -92,12 +115,16 @@ public class EnemyScript : MonoBehaviour
     {
         if (_collision.gameObject.tag == "MyProjectile")
         {
+            Vector3 relativePos = targetTransform.position - transform.position;
+            Quaternion rotationTarget = Quaternion.LookRotation(relativePos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotationTarget, 8.0f * Time.deltaTime);
             Debug.Log(gameObject.name + " hit with " + _collision.gameObject);
             GameObject projectile = _collision.gameObject;
             projectilescript = projectile.GetComponent<projectile>();
             damageFromEnemy = projectilescript.enemyDamage;
             DealDamage(damageFromEnemy);
-
+            isHit = true;
+            
         }
     }
 
