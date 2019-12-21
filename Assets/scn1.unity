@@ -360,7 +360,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 68.577, y: -463.59802, z: -222.635}
 --- !u!1 &46001712
 GameObject:
@@ -672,7 +672,7 @@ GameObject:
   - component: {fileID: 179755924}
   m_Layer: 5
   m_Name: UICanvas
-  m_TagString: Untagged
+  m_TagString: UICanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -975,7 +975,7 @@ Transform:
   m_LocalScale: {x: 30, y: 1, z: 30}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &279451360
 GameObject:
@@ -1638,53 +1638,43 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4741953474820762, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
+    - target: {fileID: 4487509831890654, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
       propertyPath: m_LocalPosition.x
       value: 10.858322
       objectReference: {fileID: 0}
-    - target: {fileID: 4741953474820762, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
+    - target: {fileID: 4487509831890654, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
       propertyPath: m_LocalPosition.y
       value: 3.76
       objectReference: {fileID: 0}
-    - target: {fileID: 4741953474820762, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
+    - target: {fileID: 4487509831890654, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
       propertyPath: m_LocalPosition.z
       value: 18.84
       objectReference: {fileID: 0}
-    - target: {fileID: 4741953474820762, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
+    - target: {fileID: 4487509831890654, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
       propertyPath: m_LocalRotation.x
       value: -0.13052624
       objectReference: {fileID: 0}
-    - target: {fileID: 4741953474820762, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
+    - target: {fileID: 4487509831890654, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4741953474820762, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
+    - target: {fileID: 4487509831890654, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4741953474820762, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
+    - target: {fileID: 4487509831890654, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
       propertyPath: m_LocalRotation.w
       value: 0.9914449
       objectReference: {fileID: 0}
-    - target: {fileID: 4741953474820762, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
+    - target: {fileID: 4487509831890654, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114748478590094556, guid: 5f0dcc245b72a13448263b5487c67349,
-        type: 2}
-      propertyPath: myText
-      value: 
-      objectReference: {fileID: 1624770985}
-    - target: {fileID: 114748478590094556, guid: 5f0dcc245b72a13448263b5487c67349,
-        type: 2}
-      propertyPath: newString
-      value: Picked Up Small Air Tank
-      objectReference: {fileID: 0}
-    - target: {fileID: 114748478590094556, guid: 5f0dcc245b72a13448263b5487c67349,
+    - target: {fileID: 114749686869572974, guid: 5f0dcc245b72a13448263b5487c67349,
         type: 2}
       propertyPath: pickupTextCanvas
       value: 
-      objectReference: {fileID: 1624770985}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f0dcc245b72a13448263b5487c67349, type: 2}
   m_IsPrefabParent: 0
@@ -3097,7 +3087,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4159346679434470, guid: ca1fe1ac7d1a19d46a7032fb1a3d5db4, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca1fe1ac7d1a19d46a7032fb1a3d5db4, type: 2}
@@ -3792,7 +3782,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1900537990
+  randomSeed: 1964131825
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7778,7 +7768,7 @@ GameObject:
   - component: {fileID: 2136906912}
   m_Layer: 0
   m_Name: hitTarget
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

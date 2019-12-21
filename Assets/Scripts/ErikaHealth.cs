@@ -46,11 +46,13 @@ public class ErikaHealth : MonoBehaviour {
     {
         if (_collision.gameObject.tag == "Projectile")
         {
+            anim.SetTrigger("Impact");
             // Take damage value from projectile object and subtract it from player health
             GameObject projectile = _collision.gameObject;
             projectilescript = projectile.GetComponent<projectile>();
             damageFromEnemy = projectilescript.enemyDamage;
             DealDamage(damageFromEnemy);
+            
         }
     }
 

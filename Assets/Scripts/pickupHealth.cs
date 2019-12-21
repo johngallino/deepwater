@@ -10,6 +10,7 @@ public class pickupHealth : MonoBehaviour {
     public Text pickupTextCanvas;
 
     private GameObject Erika;
+    private GameObject myCanvas;
     private ErikaHealth healthscript;
     
 
@@ -18,7 +19,9 @@ public class pickupHealth : MonoBehaviour {
 
     void Start ()
     {
-        Erika = GameObject.FindGameObjectWithTag("Player");
+        Erika = GameObject.Find("ERIKA");
+        myCanvas = GameObject.Find("PickupText");
+        pickupTextCanvas = myCanvas.GetComponent<Text>();
         healthscript = Erika.GetComponent<ErikaHealth>();
     }
 	

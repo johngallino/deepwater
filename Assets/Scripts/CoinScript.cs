@@ -12,7 +12,7 @@ public class CoinScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Erika = GameObject.FindGameObjectWithTag("Player");
+        Erika = GameObject.Find("ERIKA");
 
 
 

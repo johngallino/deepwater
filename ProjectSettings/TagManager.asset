@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - MyProjectile
   - Terrain
+  - UICanvas
   layers:
   - Default
   - TransparentFX
